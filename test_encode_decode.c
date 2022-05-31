@@ -16,11 +16,13 @@ uchar temp_decode_name[MAX_FILENAME_SIZE];
 
 int main(int argc, char* argv[]) {
 		EncodeInfo encInfo;//Structure variable
+
 		printf("\nINFO: Verifying inputs..\n");
 		if (argc < 3) {
 				printf("ERROR: Invalid number of command line arguments.\n\n");
 				exit(e_success);
 		}
+		/*
 		if (check_operation_type(argv + 1) == e_encode){
 				printf("INFO: Encoding operation requested.\n");
 				if (argc < 4 || argc > 7) {
@@ -182,6 +184,7 @@ int main(int argc, char* argv[]) {
 				fclose(encInfo.fptr_src_image);//close source image file
 				fclose(encInfo.fptr_secret);//Close secret file
 		}
+		*/
 		else if (check_operation_type(argv + 1) == e_decode){//Decoding
 				printf("INFO: Decoding operation requested.\n");
 				if (argc > 6) {
@@ -197,6 +200,7 @@ int main(int argc, char* argv[]) {
 						exit(e_success);
 				}
 				printf("INFO: Valid image filename.\n");
+
 				strcpy((char*)encInfo.stego_image_fname, argv[2]);
 				switch (argc) {
 						//For argc = 3, wait for file extension decoding
@@ -239,6 +243,7 @@ int main(int argc, char* argv[]) {
 								passcode_flag = 1;
 								passcode_len = strlen((const char*)encInfo.passcode);
 				}
+
 				//Open stegged image file
 				printf("INFO: Opening the image file\n");
 				if((encInfo.fptr_stego_image = fopen((const char*)encInfo.stego_image_fname, "rb")) == NULL)
@@ -247,6 +252,7 @@ int main(int argc, char* argv[]) {
 						exit(e_success);
 				}
 				printf("INFO: Image file successfully opened.\n\n");
+
 				//Collect raster data offset
 				printf("INFO: Obtaining offset to image raster data\n");
 				fseek(encInfo.fptr_stego_image, 10L, SEEK_SET);
@@ -257,6 +263,7 @@ int main(int argc, char* argv[]) {
 						printf("ERROR: Error while reading file %s\n\n", encInfo.stego_image_fname);
 						exit(e_success);
 				}
+
 				//Stego file index is now pointing at the end of raster data
 				//Decode Magic String Signature
 				printf("INFO: ##--------Decoding procedure started--------##\n");
@@ -275,7 +282,9 @@ int main(int argc, char* argv[]) {
 				printf("ERROR: 1st command line argument must be either '-e' for encoding or '-d' for decoding\n\n");
 				exit(e_success);
 		}
+
 		//Close the output file
 		fclose(encInfo.fptr_stego_image);//common file both in encoding & decoding part
+		
 		return 0;
 }
