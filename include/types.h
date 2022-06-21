@@ -13,11 +13,4 @@ typedef enum
 	e_success
 } Status;
 
-typedef enum
-{
-    e_encode,
-    e_decode,
-    e_unsupported
-} OperationType;
-
 #endif
