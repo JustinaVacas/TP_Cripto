@@ -262,6 +262,11 @@ Status do_decoding(EncodeInfo * encInfo)
             return e_failure;
         }
 
+        if(encInfo->secret_fsize > encInfo->stego_fsize){
+            printf("ERROR: Secret data size %u can't be bigger than image size %u, try another stego mode or encryption method...\n", enc_size, encInfo->stego_fsize);
+            return e_failure;
+        }
+
         //Decode file data
         printf("INFO: Decoding and storing the secret file data\n");
         file_data = decode_file_data(encInfo->secret_fsize, encInfo->fptr_stego_image);
