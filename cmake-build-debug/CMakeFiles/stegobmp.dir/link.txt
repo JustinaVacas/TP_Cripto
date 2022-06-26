@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/stegobmp.dir/stegobmp.c.o CMakeFiles/stegobmp.dir/decode.c.o CMakeFiles/stegobmp.dir/encode.c.o CMakeFiles/stegobmp.dir/encrypt.c.o  -o stegobmp -lcrypto 

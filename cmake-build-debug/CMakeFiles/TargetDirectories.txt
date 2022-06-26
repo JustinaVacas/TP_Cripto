@@ -1,3 +1,0 @@
-/tmp/TP_Cripto/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/tmp/TP_Cripto/cmake-build-debug/CMakeFiles/stegobmp.dir
-/tmp/TP_Cripto/cmake-build-debug/CMakeFiles/edit_cache.dir
