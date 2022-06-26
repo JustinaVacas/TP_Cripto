@@ -1,46 +1,46 @@
 # TP ESTEGANOGRAFÍA
+##
 
-## Requerimientos
+### Requerimientos
 
 - Compilador gcc
 - Libreria openSSL (libssl-dev)
 
-## Compilacion
+#### Compilacion
 
 Para crear el ejecutable stegobmp ejecutar
 ```bash
 make all
 ```
 
-## Limpieza
+#### Limpieza
 
 Para limpiar la carpeta ejecutar
 ```bash
-make all
+make clean
 ```
-
+##
 ## Ocultamiento de un archivo en un .bmp
 
 El programa debe recibir como parámetros:
 
-➢ -embed
+* -embed
 Indica que se va a ocultar información.
-➢ -in file
+* -in <file>
 Archivo que se va a ocultar.
-➢ -p bitmapfile
+* -p <bitmapfile>
 Archivo bmp que será el portador.
-➢ -out bitmapfile
-Archivo bmp de salida, es decir, el archivo bitmapfile con la información de file 
-incrustada.
-➢ -steg <LSB1 | LSB4 | LSBI>
-Algoritmo de esteganografiado: LSB de 1bit, LSB de 4 bits, LSB Enhanced
+* -out <bitmapfile>
+Archivo bmp de salida.
+* -steg <LSB1 | LSB4 | LSBI>
+Algoritmo de esteganografiado: LSB de 1bit, LSB de 4 bits, LSB Improved.
 
-Y los siguientes parámetros opcionales:
-➢ -a <aes128 (default) | aes192 | aes256 | des>
-➢ -m <ecb | cfb | ofb | cbc (default)>
-➢ -pass password (password de encripcion)
+Y los siguientes parámetros opcionales de encriptado:
+* -a <aes128 (default)| aes192 | aes256 | des>
+* -m <ecb | cfb | ofb | cbc(default)>
+* -pass <password>
 
-## Ejemplos
+#### Ejemplos
 
 Con encriptado
 ```bash
@@ -51,25 +51,27 @@ Sin encriptado
 ```bash
 $stegobmp -embed –in mensaje1.txt –p imagen1.bmp -out imagenmas1.bmp –steg LSBI
 ```
-
+##
 ## Extraer de un archivo .bmp un archivo oculto
 
-➢ -extract
+El programa debe recibir como parámetros:
+
+* -extract
 Indica que se va a extraer información.
-➢ -p bitmapfile
-Archivo bmp portador
-➢ -out file
-Archivo de salida obtenido
-➢ -steg <LSB1 | LSB4 | LSBI>
-Algoritmo de esteganografiado: LSB de 1bit, LSB de 4 bits, LSB Improved
+* -p <bitmapfile>
+Archivo bmp portador.
+* -out <file>
+Archivo de salida obtenido.
+* -steg <LSB1 | LSB4 | LSBI>
+Algoritmo de esteganografiado: LSB de 1bit, LSB de 4 bits, LSB Improved.
 
-Y los siguientes parámetros opcionales:
-➢ -a <aes128 | aes192 | aes256 | des>
-➢ -m <ecb | cfb | ofb | cbc>
-➢ -pass password (password de encripcion)
+Y los siguientes parámetros opcionales de desencriptado:
+* -a <aes128 | aes192 | aes256 | des>
+* -m <ecb | cfb | ofb | cbc>
+* -pass <password> (password de encripcion)
 
 
-## Ejemplos
+#### Ejemplos
 
 Con encriptado
 ```bash
@@ -80,7 +82,7 @@ Sin encriptado
 ```bash
 $stegobmp –extract –p imagenmas1.bmp -out mensaje1 –steg LSBI
 ```
-
+##
 ## Salida
 
 Los archivos de salida de -embed se guardan en la carpeta "stego_files" y los archivos de salida de -extract en la carpeta "decoded".
