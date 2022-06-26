@@ -9,14 +9,14 @@ TARGET:=stegobmp
 
 SRC = $(wildcard *.c)
 DEPS = $(patsubst %,$(IDIR)/%,$(wildcard *.h))
-OBJ = $(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
+OBJ = $(SRC:.c=.o)
 
 all: compile link
 
 compile: $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC)
 
-$(ODIR)/%.o: %.c $(DEPS)
+%.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 stegobmp: %.o
@@ -28,4 +28,4 @@ link: $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+	rm -f *.o *~ core $(INCDIR)/*~
